@@ -82,11 +82,11 @@ public class ProductService {
 			 String productPrice = productObject.get("productPrice").getAsString();
 			 String productStock = productObject.get("productStock").getAsString();
 			 String producdtDescription = productObject.get("productDescription").getAsString();
-             String embledCode1=productObject.get("embledCode1").getAsString();
-             String embledCode2=productObject.get("embledCode2").getAsString();
-             String delivertime=productObject.get("delivertime").getAsString();
-             String availability=productObject.get("availability").getAsString();
-             String approval=productObject.get("approval").getAsString();
+             		 String embledCode1=productObject.get("embledCode1").getAsString();
+             		 String embledCode2=productObject.get("embledCode2").getAsString();
+            		 String delivertime=productObject.get("delivertime").getAsString();
+    		         String availability=productObject.get("availability").getAsString();
+            		 String approval=productObject.get("approval").getAsString();
 
 			String output = productObj.updateProduct(productID, productName,  productPrice,  productStock,producdtDescription,embledCode1,embledCode2,delivertime,availability,approval);
 			return output;
@@ -107,8 +107,8 @@ public class ProductService {
 			 String productPrice = productObject.get("productPrice").getAsString();
 			 String productStock = productObject.get("productStock").getAsString();
 			 String producdtDescription = productObject.get("productDescription").getAsString();
-             String delivertime=productObject.get("delivertime").getAsString();
-             String availability=productObject.get("availability").getAsString();
+	                 String delivertime=productObject.get("delivertime").getAsString();
+            		 String availability=productObject.get("availability").getAsString();
 
 			String output = productObj.updateProductResercher(productID, productName,  productPrice,  productStock,producdtDescription,delivertime,availability);
 			return output;

@@ -97,15 +97,16 @@ public class Product {
 		 		+"<th>Description</th>"
 		 		+"<th>Researcher Id</th>"
 		 		+"<th>Credit/Debit embed</th>"
-		 	    +"<th>Paypal embed</th>"
+		 	  	+"<th>Paypal embed</th>"
 		 		+"<th>Deliver Time</th>"
-		 	    +"<th>Availability</th>"
+		 	    	+"<th>Availability</th>"
 		 		+"<th>Approval</th>"
-			    +"<th>Update</th>"
-			    +"<th>Delete</th>"
-		 	    + "</tr>";
-
+			        +"<th>Update</th>"
+			    	+"<th>Delete</th>"
+		 	    	+ "</tr>";
+		//sql command		
 		 String query = "select * from product";
+		
 		 Statement stmt = con.createStatement();
 		 ResultSet rs = stmt.executeQuery(query);
 		 // iterate through the rows in the result set
@@ -116,7 +117,7 @@ public class Product {
 		 String productItemcode = rs.getString("productItemcode");
 		 String productPrice = Double.toString(rs.getDouble("productPrice"));
 		 String productStock = rs.getString("productStock");
-		 String productDescription	=rs.getString("productDescription");
+		 String productDescription=rs.getString("productDescription");
 		 String researcherID = Integer.toString(rs.getInt("researcherID"));
 		 String embledCode1=rs.getString("embledCode1");
 		 String	embledCode2=rs.getString("embledCode2"); 
@@ -147,7 +148,7 @@ public class Product {
 		 + "'>" + "</form></td></tr>";
 		 
 		 }
-		 con.close();
+		 con.close();//Connection Close
 		 
 		 // Complete the html table
 		 output += "</table>";
@@ -170,8 +171,9 @@ public class Product {
 			 Connection con = connect();
 			 if (con == null)
 			 {return "Error while connecting to the database for updating."; }
-			 // create a prepared statement
+			
 			 String query = "UPDATE product SET productName	=?,productPrice=?,productStock=?,productDescription=?,embledCode1=?,embledCode2=?,delivertime=?,availability=?,approval=? WHERE productID=?";
+			 // create a prepared statement
 			 PreparedStatement preparedStmt = con.prepareStatement(query);
 			 // binding values
 			 preparedStmt.setString(1, name);
@@ -188,7 +190,7 @@ public class Product {
 			 // execute the statement
 			 preparedStmt.execute();
 			 con.close();
-			 output = "Updated successfully";
+			 output = "Updated successfully";//Display Message
 			 }
 			 catch (Exception e)
 			 {
@@ -208,8 +210,9 @@ public class Product {
 			 Connection con = connect();
 			 if (con == null)
 			 {return "Error while connecting to the database for updating."; }
-			 // create a prepared statement
+			 
 			 String query = "UPDATE product SET productName	=?,productPrice=?,productStock=?,productDescription=?,delivertime=?,availability=? WHERE productID=?";
+			 // create a prepared statement
 			 PreparedStatement preparedStmt = con.prepareStatement(query);
 			 // binding values
 			 preparedStmt.setString(1, name);
@@ -286,15 +289,15 @@ public class Product {
 			 		+"<th>Deliver Time</th>"
 			 		+"<th>Availability</th>"
 			 		+"<th>Approval</th>"
-			 	    +"<th>Update</th>"
-			 	    + "<th>Remove</th>"
-			 	    + "</tr>";
+			 		+"<th>Update</th>"
+			 	        + "<th>Remove</th>"
+			 	    	+ "</tr>";
 
 			 String query = "select * from product where researcherID=?";
 
 				PreparedStatement stmt = con.prepareStatement(query);
 
-				stmt.setInt(1,researcherId);
+			 stmt.setInt(1,researcherId);
 			 ResultSet rs = stmt.executeQuery();
 			 // iterate through the rows in the result set
 			 while (rs.next())
@@ -308,7 +311,7 @@ public class Product {
 			 String researcherId1=Integer.toString(rs.getInt("researcherID"));
 			 String delivertime	=rs.getString("delivertime");
 			 String availability=rs.getString("availability");
-             String approvel=rs.getString("approval");
+             		 String approvel=rs.getString("approval");
 			 
 			 // Add into the html table
 			 output += "<tr><td>" + productID + "</td>";
@@ -361,8 +364,8 @@ public class Product {
 				 		+"<th>Description</th>"
 				 		+"<th>Deliver time</th>"
 				 		+"<th>Availability</th>"
-				 	    +"<th>Buy</th>"
-				 	    + "</tr>";
+				 	        +"<th>Buy</th>"
+				 	        + "</tr>";
 
 				 String query = "select * from product";
 				 Statement stmt = con.createStatement();
