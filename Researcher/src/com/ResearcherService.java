@@ -31,7 +31,7 @@ public class ResearcherService {
 	  {
 	 	 return researcherObj.readReseacher();
 	  }
-//Post path All Researchers	
+//Post path All Researcher's	
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -56,7 +56,7 @@ public class ResearcherService {
 	return output;
 	}
 
-//Put path All Researchers
+//Put path All Researcher's
 	@PUT
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -80,7 +80,7 @@ public class ResearcherService {
 		return output;
 	}
 	
-//View Profile Researchers path
+//View Profile Researcher's path
 	@POST
 	@Path("/ViewProfileReasearchers")
 	@Produces(MediaType.TEXT_HTML)
