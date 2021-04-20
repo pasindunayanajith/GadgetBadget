@@ -59,6 +59,7 @@ public class Buyer {
 
 		 // execute the statement
 		 preparedStmt.execute();
+		//connection close
 		 con.close();
 		 output = "Inserted successfully";
 		 
@@ -97,9 +98,9 @@ public class Buyer {
 		 		+"<th>Birth Day</th>"
 		 		+"<th>Email</th>"
 		 		+"<th>Password</th>"
-		 	    +"<th>Update</th>"
-		 	    + "<th>Remove</th>"
-		 	    + "</tr>";
+		 		+"<th>Update</th>"
+		 	   	+ "<th>Remove</th>"
+		 	    	+ "</tr>";
 
 		 String query = "select * from buyer";
 		 Statement stmt = con.createStatement();
@@ -136,6 +137,7 @@ public class Buyer {
 		 + "<input name='itemID' type='hidden' value='" + buyerID
 		 + "'>" + "</form></td></tr>";
 		 }
+		 //connection close
 		 con.close();
 		 
 		 // Complete the html table
@@ -173,6 +175,7 @@ public class Buyer {
 			 preparedStmt.setInt(8, Integer.parseInt(ID));
 			 // execute the statement
 			 preparedStmt.execute();
+			//Connection Close
 			 con.close();
 			 output = "Updated successfully";
 			 }
@@ -202,6 +205,7 @@ public class Buyer {
 		 preparedStmt.setInt(1, Integer.parseInt(buyerID));
 		 // execute the statement
 		 preparedStmt.execute();
+		 // connection Close
 		 con.close();
 		 output = "Deleted successfully";
 		 }
@@ -236,9 +240,9 @@ public class Buyer {
 		 		+"<th>Birth Day</th>"
 		 		+"<th>Email</th>"
 		 		+"<th>Password</th>"
-		 	    +"<th>Update</th>"
-		 	    + "<th>Remove</th>"
-		 	    + "</tr>";
+		 	  	+"<th>Update</th>"
+		 	   	+ "<th>Remove</th>"
+		 	    	+ "</tr>";
 
 		 String query = "select * from buyer where 	buyerID=? ";
 		 PreparedStatement stmt = con.prepareStatement(query);
@@ -277,7 +281,8 @@ public class Buyer {
 		 + "<input name='buyerID' type='hidden' value='" + buyerID
 		 + "'>" + "</form></td></tr>";
 		 }
-		 con.close();
+		//Connection Close 
+		con.close();
 		 
 		 // Complete the html table
 		 output += "</table>";

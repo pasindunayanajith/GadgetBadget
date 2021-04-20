@@ -14,7 +14,7 @@ import com.google.gson.*;
 @Path("/Buyers")
 
 public class BuyerService {
-
+	//Create Buyer Object
 	Buyer buyerObj= new Buyer();
 //Read All buyers path	 
 		 @GET
@@ -43,7 +43,7 @@ public class BuyerService {
 		
 
 	{
-		 String output = buyerObj.insertBuyer( buyerFname,  buyerLname,  buyerGender,  buyerAddress, buyerPhone,  buyerNic, buyerBirthday  ,buyerEmail,  buyerPassword);
+		String output = buyerObj.insertBuyer( buyerFname,  buyerLname,  buyerGender,  buyerAddress, buyerPhone,  buyerNic, buyerBirthday  ,buyerEmail,  buyerPassword);
 		return output;
 	}
 
