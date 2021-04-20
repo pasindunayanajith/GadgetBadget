@@ -57,11 +57,10 @@ public String updateFundingBodie(String fbData)
  String fbName = fbObject.get("fbName").getAsString();
  String fbAddress = fbObject.get("fbAddress").getAsString();
  String fbPhone = fbObject.get("fbPhone").getAsString();
- String fbEmail = fbObject.get("fbEmail").getAsString();
  String fbPassword = fbObject.get("fbPassword").getAsString();
  String fbDescription = fbObject.get("fbDescription").getAsString();
 
- String output = fbObj.updateFundingBodie(fbID, fbName, fbAddress, fbPhone, fbEmail, fbPassword, fbDescription) ;
+ String output = fbObj.updateFundingBodie(fbID, fbName, fbAddress, fbPhone, fbPassword, fbDescription) ;
 return output;
 }
 

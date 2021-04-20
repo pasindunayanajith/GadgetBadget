@@ -56,6 +56,7 @@ public class FundingBodie {
 	
 	 // execute the statement
 	 preparedStmt.execute();
+	 //connection close
 	 con.close();
 	 output = "Inserted successfully";
 	 
@@ -91,9 +92,9 @@ public class FundingBodie {
 	 		+ "<th>Email</th>"
 	 		+"<th>Password</th>"
 	 		+"<th>Descripition</th>"
-	 	    +"<th>Update</th>"
-	 	    + "<th>Remove</th>"
-	 	    + "</tr>";
+	 	   	+"<th>Update</th>"
+	 	    	+ "<th>Remove</th>"
+	 	  	+ "</tr>";
 
 	 String query = "select * from fundingbodies";
 	 Statement stmt = con.createStatement();
@@ -123,7 +124,8 @@ public class FundingBodie {
 	 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>" + "<td><form method='post' action='FundingBodies.jsp'>" + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
 	 + "<input name='itemID' type='hidden' value='" + fbID + "'>" + "</form></td></tr>";
 	 }
-	 con.close();
+	//connection close 
+	con.close();
 	 
 	 // Complete the html table
 	 output += "</table>";
@@ -138,7 +140,7 @@ public class FundingBodie {
 	
 	
 	//************************************************Update Data***************************************************************
-	public String updateFundingBodie(String ID,String name, String address, String phone, String email,String password,String desc)
+	public String updateFundingBodie(String ID,String name, String address, String phone,String password,String desc)
 	{
 		 String output = "";
 		 try
@@ -147,18 +149,18 @@ public class FundingBodie {
 		 if (con == null)
 		 {return "Error while connecting to the database for updating."; }
 		 // create a prepared statement
-		 String query = "UPDATE fundingbodies SET fbName=?,fbAddress=?,fbPhone=?,fbEmail=?,fbPassword=?,fbDescription=? WHERE fbID=?";
+		 String query = "UPDATE fundingbodies SET fbName=?,fbAddress=?,fbPhone=?,fbPassword=?,fbDescription=? WHERE fbID=?";
 		 PreparedStatement preparedStmt = con.prepareStatement(query);
 		 // binding values
 		 preparedStmt.setString(1, name);
 		 preparedStmt.setString(2, address);
 		 preparedStmt.setString(3, phone);
-		 preparedStmt.setString(4, email);
-		 preparedStmt.setString(5, password);
-		 preparedStmt.setString(6,desc );
-		 preparedStmt.setInt(7, Integer.parseInt(ID));
+		 preparedStmt.setString(4, password);
+		 preparedStmt.setString(5,desc );
+		 preparedStmt.setInt(6, Integer.parseInt(ID));
 		 // execute the statement
 		 preparedStmt.execute();
+		 //connection close
 		 con.close();
 		 output = "Updated successfully";
 		 }
@@ -188,6 +190,7 @@ public class FundingBodie {
 	 preparedStmt.setInt(1, Integer.parseInt(fbID));
 	 // execute the statement
 	 preparedStmt.execute();
+	 //connection close
 	 con.close();
 	 output = "Deleted successfully";
 	 }
@@ -218,15 +221,15 @@ public class FundingBodie {
 		 		+ "<th>Email</th>"
 		 		+"<th>Password</th>"
 		 		+"<th>Descripition</th>"
-		 	    +"<th>Update</th>"
-		 	    + "<th>Remove</th>"
-		 	    + "</tr>";
+		 	   	+"<th>Update</th>"
+		 	    	+ "<th>Remove</th>"
+		 	    	+ "</tr>";
 
 		 String query ="select * from fundingbodies WHERE fbID=?";
 		 		
 			PreparedStatement stmt = con.prepareStatement(query);
 
-			stmt.setInt(1,fbID);
+		 stmt.setInt(1,fbID);
 		 ResultSet rs = stmt.executeQuery();
 		 // iterate through the rows in the result set
 		 while (rs.next())
@@ -253,6 +256,7 @@ public class FundingBodie {
 		 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>" + "<td><form method='post' action='FundingBodies.jsp'>" + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
 		 + "<input name='itemID' type='hidden' value='" + fbID1 + "'>" + "</form></td></tr>";
 		 }
+		 //connection close
 		 con.close();
 		 
 		 // Complete the html table
@@ -285,7 +289,7 @@ public class FundingBodie {
 			 		+ "<th>Phone</th>"
 			 		+ "<th>Email</th>"
 			 		+"<th>Descripition</th>"
-			 	    + "</tr>";
+			 	    	+ "</tr>";
 
 			 String query = "select * from fundingbodies";
 			 Statement stmt = con.createStatement();
@@ -311,6 +315,7 @@ public class FundingBodie {
 
 		
 			 }
+			 //Connection close
 			 con.close();
 			 
 			 // Complete the html table
