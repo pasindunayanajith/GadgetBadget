@@ -56,6 +56,7 @@ public class Payment {
 
 	 // execute the statement
 	 preparedStmt.execute();
+	//Connection Close
 	 con.close();
 	 output = "Inserted successfully";
 	 
@@ -94,9 +95,9 @@ public class Payment {
 		 		+"<th>Product Itemcode</th>"
 		 		+"<th>Product Stock</th>"
 		 		+"<th>Product Description</th>"
-		        +"<th>Buyer Email</th>"
-		        +"<th>Buyer Contact Number</th>"
-		 	    + "</tr>";
+		     		+"<th>Buyer Email</th>"
+		        	+"<th>Buyer Contact Number</th>"
+		 	    	+ "</tr>";
 
 		 String query = "select p.paymantID,p.paymentType,p.paymentAmount,p.paymentDate,p.paymentPostaladdress,p.paymentPostalcode,pro.productName,pro.productItemcode,pro.productStock,pro.productDescription,b.buyerEmail,b.buyerPhone From(( product pro INNER JOIN payment p ON (p.productID=pro.productID) )INNER JOIN buyer b ON  (p.buyerID=b.buyerID)) ORDER BY p.paymantID ASC";
 		 PreparedStatement stmt = con.prepareStatement(query);
@@ -166,6 +167,7 @@ public class Payment {
 		
 		 // execute the statement
 		 preparedStmt.execute();
+		 // Connection Close
 		 con.close();
 		 output = "Updated successfully";
 		 }
@@ -229,9 +231,9 @@ public class Payment {
 		 		+"<th>Product Itemcode</th>"
 		 		+"<th>Product Stock</th>"
 		 		+"<th>Product Description</th>"
-		 	    +"<th>Order Received</th>"
-		 	    + "<th>Report</th>"
-		 	    + "</tr>";
+		 	 	+"<th>Order Received</th>"
+		 	   	+ "<th>Report</th>"
+		 	        + "</tr>";
 
 		 String query = "select p.paymantID,p.paymentType,p.paymentAmount,p.paymentDate,p.paymentPostaladdress,p.paymentPostalcode,pro.productName,pro.productItemcode,pro.productStock,pro.productDescription From product pro INNER JOIN payment p ON (p.productID=pro.productID) where p.buyerID=?";
 		 PreparedStatement stmt = con.prepareStatement(query);
@@ -270,6 +272,7 @@ public class Payment {
 		 + "<input name='paymantID' type='hidden' value='" + paymantID
 		 + "'>" + "</form></td></tr>";
 		 }
+		//Connection Close
 		 con.close();
 		 
 		 // Complete the html table
