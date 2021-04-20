@@ -23,7 +23,7 @@ import model.Researcher;
 
 public class ResearcherService {
 	Researcher researcherObj= new Researcher();
-//Get path All Researchers  
+//Get path All Researcher's  
 	@GET
 	 @Path("/")
 	 @Produces(MediaType.TEXT_HTML)

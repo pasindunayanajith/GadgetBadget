@@ -61,7 +61,8 @@ public class Researcher{
 
 			 // execute the statement
 			 preparedStmt.execute();
-			 con.close();
+			 //Connection close
+			 con.close(); 
 			 output = "Inserted successfully";
 			 
 			 }
@@ -101,9 +102,9 @@ public class Researcher{
 			 		+"<th>Research Details</th>"
 			 		+"<th>BankAccount Number</th>"
 			 		+"<th>Bank Name</th>"
-			 	    +"<th>Update</th>"
-			 	    + "<th>Remove</th>"
-			 	    + "</tr>";
+       			 	        +"<th>Update</th>"
+			 	        + "<th>Remove</th>"
+			 	        + "</tr>";
 
 			 String query = "select * from researcher";
 			 Statement stmt = con.createStatement();
@@ -143,6 +144,7 @@ public class Researcher{
 			 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>" + "<td><form method='post' action='Reasearchers.jsp'>" + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
 			 + "<input name='researcherID' type='hidden' value='" + researcherID + "'>" + "</form></td></tr>";
 			 }
+			//Connection Close
 			 con.close();
 			 
 			 // Complete the html table
@@ -183,6 +185,7 @@ public class Researcher{
 
 				 // execute the statement
 				 preparedStmt.execute();
+				 //Connection Close
 				 con.close();
 				 output = "Updated successfully";
 				 }
@@ -212,6 +215,7 @@ public class Researcher{
 			 preparedStmt.setInt(1, Integer.parseInt(researcherID));
 			 // execute the statement
 			 preparedStmt.execute();
+			//Connection Close 
 			 con.close();
 			 output = "Deleted successfully";
 			 }
@@ -293,6 +297,7 @@ public class Researcher{
 				 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>" + "<td><form method='post' action='Reasearchers.jsp'>" + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
 				 + "<input name='researcherID' type='hidden' value='" + researcherID1 + "'>" + "</form></td></tr>";
 				 }
+				//Connection Close
 				 con.close();
 				 
 				 // Complete the html table
@@ -360,6 +365,7 @@ public class Researcher{
 
 				
 				 }
+				//connection close
 				 con.close();
 				 
 				 // Complete the html table
