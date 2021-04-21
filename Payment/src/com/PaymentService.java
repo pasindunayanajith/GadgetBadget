@@ -1,5 +1,6 @@
 package com;
 
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -41,7 +42,6 @@ public class PaymentService {
 		
 		public String insertProduct( @FormParam("paymentType") String paymentType,
 		 @FormParam("paymentAmount") String paymentAmount,
-		 @FormParam("paymentDate") String paymentDate,
 		 @FormParam("paymentPostaladdress") String paymentPostaladdress,
 		 @FormParam("paymentPostalcode") String paymentPostalcode,
 		 @FormParam("productID") String productID,
@@ -49,7 +49,7 @@ public class PaymentService {
 
 
 		{
-		 String output = paymentObj.insertPayment( paymentType,  paymentAmount,  paymentDate, paymentPostaladdress,paymentPostalcode,productID,buyerID);
+		 String output = paymentObj.insertPayment( paymentType,  paymentAmount, paymentPostaladdress,paymentPostalcode,productID,buyerID);
 		return output;
 		}
 
@@ -73,7 +73,7 @@ public class PaymentService {
 		}
 		
 
-//Delete Payment Path
+//Delete Payment PATH
 		@DELETE
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_XML)

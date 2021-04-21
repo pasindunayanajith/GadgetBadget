@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +29,7 @@ public class Payment {
 	}
 
 //************************************Insert Data**********(Insert payment details for buy prodcut individual)****************************************	
-	public String insertPayment(String type,String amount ,String date	,String postaladdress, String postalcode,String productid,String buyerid )
+	public String insertPayment(String type,String amount ,String postaladdress, String postalcode,String productid,String buyerid )
 	 {																									//produtid and buyerid POST data(Forign key) 
 	 
 		String output = "";
@@ -41,22 +42,21 @@ public class Payment {
 	 {return "Error while connecting to the database for inserting."; }
 	 
 	 // create a prepared statement
-	 String query = " insert into payment(`paymantID`,`paymentType`,`paymentAmount`,`paymentDate`,`paymentPostaladdress`,`paymentPostalcode`,`productID`,`buyerID`)" + " values (?, ?, ?, ?, ?,?,?,?)";
+	 String query = " insert into payment(`paymantID`,`paymentType`,`paymentAmount`,`paymentDate`,`paymentPostaladdress`,`paymentPostalcode`,`productID`,`buyerID`)" + " values (?, ?, ?,NOW(), ?,?,?,?)";
 	 PreparedStatement preparedStmt = con.prepareStatement(query);
 	 
 	 // binding values
 	 preparedStmt.setInt(1, 0);
 	 preparedStmt.setString(2, type);
 	 preparedStmt.setDouble(3, Double.parseDouble(amount));
-	 preparedStmt.setString(4, date);
-	 preparedStmt.setString(5, postaladdress);
-	 preparedStmt.setString(6, postalcode);
-     preparedStmt.setInt(7,Integer.parseInt(productid));
-     preparedStmt.setInt(8,Integer.parseInt(buyerid));
+	 preparedStmt.setString(4, postaladdress);
+	 preparedStmt.setString(5, postalcode);
+     preparedStmt.setInt(6,Integer.parseInt(productid));
+     preparedStmt.setInt(7,Integer.parseInt(buyerid));
 
 	 // execute the statement
 	 preparedStmt.execute();
-	//Connection Close
+	 //Connection close
 	 con.close();
 	 output = "Inserted successfully";
 	 
@@ -95,9 +95,9 @@ public class Payment {
 		 		+"<th>Product Itemcode</th>"
 		 		+"<th>Product Stock</th>"
 		 		+"<th>Product Description</th>"
-		     		+"<th>Buyer Email</th>"
-		        	+"<th>Buyer Contact Number</th>"
-		 	    	+ "</tr>";
+		        +"<th>Buyer Email</th>"
+		        +"<th>Buyer Contact Number</th>"
+		 	    + "</tr>";
 
 		 String query = "select p.paymantID,p.paymentType,p.paymentAmount,p.paymentDate,p.paymentPostaladdress,p.paymentPostalcode,pro.productName,pro.productItemcode,pro.productStock,pro.productDescription,b.buyerEmail,b.buyerPhone From(( product pro INNER JOIN payment p ON (p.productID=pro.productID) )INNER JOIN buyer b ON  (p.buyerID=b.buyerID)) ORDER BY p.paymantID ASC";
 		 PreparedStatement stmt = con.prepareStatement(query);
@@ -109,7 +109,7 @@ public class Payment {
 		 String paymantID  = Integer.toString(rs.getInt("paymantID"));
 		 String paymentType = rs.getString("paymentType");
 		 String paymentAmount = rs.getString("paymentAmount");
-		 String paymentDate = rs.getString("paymentDate");
+		 Date paymentDate = rs.getDate("paymentDate");
 		 String paymentPostaladdress = rs.getString("paymentPostaladdress");
 		 String paymentPostalcode =rs.getString("paymentPostalcode");
 		 String productName=rs.getString("productName");
@@ -133,6 +133,7 @@ public class Payment {
 		 output += "<td>"+buyerEmail+"</td>";
 		 output += "<td>"+buyerPhone+"</td>";
 		 }
+		//Connection close
 		 con.close();
 		 
 		 // Complete the html table
@@ -167,7 +168,7 @@ public class Payment {
 		
 		 // execute the statement
 		 preparedStmt.execute();
-		 // Connection Close
+		 //Connection close
 		 con.close();
 		 output = "Updated successfully";
 		 }
@@ -197,6 +198,7 @@ public class Payment {
 	 preparedStmt.setInt(1, Integer.parseInt(paymantID));
 	 // execute the statement
 	 preparedStmt.execute();
+	 //Connection closse
 	 con.close();
 	 output = "Deleted successfully";
 	 }
@@ -231,14 +233,14 @@ public class Payment {
 		 		+"<th>Product Itemcode</th>"
 		 		+"<th>Product Stock</th>"
 		 		+"<th>Product Description</th>"
-		 	 	+"<th>Order Received</th>"
-		 	   	+ "<th>Report</th>"
-		 	        + "</tr>";
+		 	    +"<th>Order Received</th>"
+		 	    + "<th>Report</th>"
+		 	    + "</tr>";
 
 		 String query = "select p.paymantID,p.paymentType,p.paymentAmount,p.paymentDate,p.paymentPostaladdress,p.paymentPostalcode,pro.productName,pro.productItemcode,pro.productStock,pro.productDescription From product pro INNER JOIN payment p ON (p.productID=pro.productID) where p.buyerID=?";
 		 PreparedStatement stmt = con.prepareStatement(query);
 
-			stmt.setInt(1,buyerId);
+		 stmt.setInt(1,buyerId);
 		 ResultSet rs = stmt.executeQuery();
 		 // iterate through the rows in the result set
 		 while (rs.next())
@@ -246,7 +248,7 @@ public class Payment {
 		 String paymantID  = Integer.toString(rs.getInt("paymantID"));
 		 String paymentType = rs.getString("paymentType");
 		 String paymentAmount = rs.getString("paymentAmount");
-		 String paymentDate = rs.getString("paymentDate");
+		 Date paymentDate = rs.getDate("paymentDate");
 		 String paymentPostaladdress = rs.getString("paymentPostaladdress");
 		 String paymentPostalcode =rs.getString("paymentPostalcode");
 		 String productName=rs.getString("productName");
@@ -272,7 +274,7 @@ public class Payment {
 		 + "<input name='paymantID' type='hidden' value='" + paymantID
 		 + "'>" + "</form></td></tr>";
 		 }
-		//Connection Close
+		 //Connection Close
 		 con.close();
 		 
 		 // Complete the html table
@@ -325,7 +327,7 @@ public class Payment {
 		 String paymantID  = Integer.toString(rs.getInt("paymantID"));
 		 String paymentType = rs.getString("paymentType");
 		 String paymentAmount = rs.getString("paymentAmount");
-		 String paymentDate = rs.getString("paymentDate");
+		 Date paymentDate = rs.getDate("paymentDate");
 		 String paymentPostaladdress = rs.getString("paymentPostaladdress");
 		 String paymentPostalcode =rs.getString("paymentPostalcode");
 		 String productName=rs.getString("productName");
@@ -353,6 +355,7 @@ public class Payment {
 		 output +="<td>"+buyerEmail+"</td>";
 		 output += "<td>"+buyerPhone+"</td>";
 		 }
+		 //Connection close
 		 con.close();
 		 
 		 // Complete the html table
