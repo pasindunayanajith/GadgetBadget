@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +30,7 @@ public class Researcher{
 			}
 
 		//************************************Insert Data**************************************************	
-			public String insertResearcher(String fname,String lname ,String gender,String nic, String phone,String birthday ,String email,String password,String rdetails,String accountnum,String bankname)
+			public String insertResearcher(String fname,String lname ,String gender,String nic, String phone,Date birthday ,String email,String password,String rdetails,String accountnum,String bankname)
 			 {
 			 
 				String output = "";
@@ -52,7 +53,7 @@ public class Researcher{
 			 preparedStmt.setString(4, gender);
 			 preparedStmt.setString(5, nic);
 			 preparedStmt.setString(6, phone);
-			 preparedStmt.setString(7, birthday);
+			 preparedStmt.setDate(7, birthday);
 			 preparedStmt.setString(8, email);
 			 preparedStmt.setString(9, password);
 			 preparedStmt.setString(10, rdetails);
@@ -62,7 +63,7 @@ public class Researcher{
 			 // execute the statement
 			 preparedStmt.execute();
 			 //Connection close
-			 con.close(); 
+			 con.close();
 			 output = "Inserted successfully";
 			 
 			 }
@@ -102,9 +103,9 @@ public class Researcher{
 			 		+"<th>Research Details</th>"
 			 		+"<th>BankAccount Number</th>"
 			 		+"<th>Bank Name</th>"
-       			 	        +"<th>Update</th>"
-			 	        + "<th>Remove</th>"
-			 	        + "</tr>";
+			 	    +"<th>Update</th>"
+			 	    + "<th>Remove</th>"
+			 	    + "</tr>";
 
 			 String query = "select * from researcher";
 			 Statement stmt = con.createStatement();
@@ -118,7 +119,7 @@ public class Researcher{
 			 String researcherGender = rs.getString("researcherGender");
 			 String researcherNic = rs.getString("researcherNic");
 			 String researcherPhone=rs.getString("researcherPhone");
-			 String researcherBirthday = rs.getString("researcherBirthday");
+			 Date researcherBirthday = rs.getDate("researcherBirthday");
 			 String researcherEmail = rs.getString("researcherEmail");
 			 String researcherPassword = rs.getString("researcherPassword");
 			 String researchDetails= rs.getString("researchDetails");
@@ -144,7 +145,7 @@ public class Researcher{
 			 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>" + "<td><form method='post' action='Reasearchers.jsp'>" + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
 			 + "<input name='researcherID' type='hidden' value='" + researcherID + "'>" + "</form></td></tr>";
 			 }
-			//Connection Close
+			 //Connection Close
 			 con.close();
 			 
 			 // Complete the html table
@@ -176,12 +177,14 @@ public class Researcher{
 				 preparedStmt.setString(2, lname);
 				 preparedStmt.setString(3, gender);
 				 preparedStmt.setString(4, phone);
-				 preparedStmt.setString(5,birthday );
+				 preparedStmt.setString(5, birthday) ;
 				 preparedStmt.setString(6,password );
 				 preparedStmt.setString(7,rdetails);
-				 preparedStmt.setInt(8, Integer.parseInt(ID));
-				 preparedStmt.setString(9,accountnum);
-				 preparedStmt.setString(10,bankname);
+				 preparedStmt.setString(8,accountnum);
+				 preparedStmt.setString(9,bankname);
+				 preparedStmt.setInt(10, Integer.parseInt(ID));
+
+			
 
 				 // execute the statement
 				 preparedStmt.execute();
@@ -215,7 +218,7 @@ public class Researcher{
 			 preparedStmt.setInt(1, Integer.parseInt(researcherID));
 			 // execute the statement
 			 preparedStmt.execute();
-			//Connection Close 
+			 //Connection Close
 			 con.close();
 			 output = "Deleted successfully";
 			 }
@@ -271,7 +274,7 @@ public class Researcher{
 				 String researcherGender = rs.getString("researcherGender");
 				 String researcherNic = rs.getString("researcherNic");
 				 String researcherPhone=rs.getString("researcherPhone");
-				 String researcherBirthday = rs.getString("researcherBirthday");
+				 Date researcherBirthday = rs.getDate("researcherBirthday");
 				 String researcherEmail = rs.getString("researcherEmail");
 				 String researcherPassword = rs.getString("researcherPassword");
 				 String researchDetails= rs.getString("researchDetails");
@@ -297,7 +300,7 @@ public class Researcher{
 				 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>" + "<td><form method='post' action='Reasearchers.jsp'>" + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>"
 				 + "<input name='researcherID' type='hidden' value='" + researcherID1 + "'>" + "</form></td></tr>";
 				 }
-				//Connection Close
+				 //Connection Close
 				 con.close();
 				 
 				 // Complete the html table
@@ -347,7 +350,7 @@ public class Researcher{
 				 String researcherGender = rs.getString("researcherGender");
 				 String researcherNic = rs.getString("researcherNic");
 				 String researcherPhone=rs.getString("researcherPhone");
-				 String researcherBirthday = rs.getString("researcherBirthday");
+				 Date researcherBirthday = rs.getDate("researcherBirthday");
 				 String researcherEmail = rs.getString("researcherEmail");
 				 String researchDetails= rs.getString("researchDetails");
 
@@ -365,7 +368,7 @@ public class Researcher{
 
 				
 				 }
-				//connection close
+				 //Connection Close
 				 con.close();
 				 
 				 // Complete the html table

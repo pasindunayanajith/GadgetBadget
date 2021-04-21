@@ -1,5 +1,7 @@
 package com;
 
+import java.sql.Date;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -23,7 +25,7 @@ import model.Researcher;
 
 public class ResearcherService {
 	Researcher researcherObj= new Researcher();
-//Get path All Researcher's  
+//Get path All Researchers  
 	@GET
 	 @Path("/")
 	 @Produces(MediaType.TEXT_HTML)
@@ -31,7 +33,7 @@ public class ResearcherService {
 	  {
 	 	 return researcherObj.readReseacher();
 	  }
-//Post path All Researcher's	
+//Post path All Researchers	
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -42,7 +44,7 @@ public class ResearcherService {
 	 @FormParam("researcherGender") String researcherGender,
 	 @FormParam("researcherNic") String researcherNic,
 	 @FormParam("researcherPhone") String researcherPhone,
-	 @FormParam("researcherBirthday") String researcherBirthday,
+	 @FormParam("researcherBirthday") Date researcherBirthday,
 	 @FormParam("researcherEmail") String researcherEmail,
 	 @FormParam("researcherPassword") String researcherPassword,
 	 @FormParam("researchDetails") String researchDetails,
@@ -56,7 +58,7 @@ public class ResearcherService {
 	return output;
 	}
 
-//Put path All Researcher's
+//Put path All Researchers
 	@PUT
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -80,7 +82,7 @@ public class ResearcherService {
 		return output;
 	}
 	
-//View Profile Researcher's path
+//View Profile Researchers path
 	@POST
 	@Path("/ViewProfileReasearchers")
 	@Produces(MediaType.TEXT_HTML)
