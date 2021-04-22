@@ -399,7 +399,8 @@ public class Product {
 			
 				 + "</form></td></tr>";
 				 }
-				 con.close();
+				//Connection Close 
+				con.close();
 				 
 				 // Complete the html table
 				 output += "</table>";
