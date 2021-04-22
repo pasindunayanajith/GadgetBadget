@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +30,7 @@ public class Buyer {
 		}
 
 	//************************************Insert Data**************************************************	
-		public String insertBuyer(String fname,String lname ,String gender,String address, String phone,String nic ,String birthday,String email,String password)
+		public String insertBuyer(String fname,String lname ,String gender,String address, String phone,String nic ,Date birthday,String email,String password)
 		 {
 		 
 			String output = "";
@@ -53,13 +54,13 @@ public class Buyer {
 		 preparedStmt.setString(5, address);
 		 preparedStmt.setString(6, phone);
 		 preparedStmt.setString(7, nic);
-		 preparedStmt.setString(8, birthday);
+		 preparedStmt.setDate(8, birthday);
 		 preparedStmt.setString(9, email);
 		 preparedStmt.setString(10, password);
 
 		 // execute the statement
 		 preparedStmt.execute();
-		//connection close
+		 //Connection Close
 		 con.close();
 		 output = "Inserted successfully";
 		 
@@ -98,9 +99,9 @@ public class Buyer {
 		 		+"<th>Birth Day</th>"
 		 		+"<th>Email</th>"
 		 		+"<th>Password</th>"
-		 		+"<th>Update</th>"
-		 	   	+ "<th>Remove</th>"
-		 	    	+ "</tr>";
+		 	    +"<th>Update</th>"
+		 	    + "<th>Remove</th>"
+		 	    + "</tr>";
 
 		 String query = "select * from buyer";
 		 Statement stmt = con.createStatement();
@@ -115,7 +116,7 @@ public class Buyer {
 		 String buyerAddress = rs.getString("buyerAddress");
 		 String buyerPhone=rs.getString("buyerPhone");
 		 String buyerNic = rs.getString("buyerNic");
-		 String buyerBirthday = rs.getString("buyerBirthday");
+		 Date buyerBirthday = rs.getDate("buyerBirthday");
 		 String buyerEmail = rs.getString("buyerEmail");
 		 String buyerPassword = rs.getString("buyerPassword");
 
@@ -137,7 +138,7 @@ public class Buyer {
 		 + "<input name='itemID' type='hidden' value='" + buyerID
 		 + "'>" + "</form></td></tr>";
 		 }
-		 //connection close
+		 //Connection Close
 		 con.close();
 		 
 		 // Complete the html table
@@ -175,7 +176,7 @@ public class Buyer {
 			 preparedStmt.setInt(8, Integer.parseInt(ID));
 			 // execute the statement
 			 preparedStmt.execute();
-			//Connection Close
+			 //Connection Close
 			 con.close();
 			 output = "Updated successfully";
 			 }
@@ -205,7 +206,7 @@ public class Buyer {
 		 preparedStmt.setInt(1, Integer.parseInt(buyerID));
 		 // execute the statement
 		 preparedStmt.execute();
-		 // connection Close
+		 //Connection Close
 		 con.close();
 		 output = "Deleted successfully";
 		 }
@@ -240,14 +241,14 @@ public class Buyer {
 		 		+"<th>Birth Day</th>"
 		 		+"<th>Email</th>"
 		 		+"<th>Password</th>"
-		 	  	+"<th>Update</th>"
-		 	   	+ "<th>Remove</th>"
-		 	    	+ "</tr>";
+		 	    +"<th>Update</th>"
+		 	    + "<th>Remove</th>"
+		 	    + "</tr>";
 
 		 String query = "select * from buyer where 	buyerID=? ";
 		 PreparedStatement stmt = con.prepareStatement(query);
 
-			stmt.setInt(1,buyerId);
+		 stmt.setInt(1,buyerId);
 		 ResultSet rs = stmt.executeQuery();
 		 // iterate through the rows in the result set
 		 while (rs.next())
@@ -259,7 +260,7 @@ public class Buyer {
 		 String buyerAddress = rs.getString("buyerAddress");
 		 String buyerPhone=rs.getString("buyerPhone");
 		 String buyerNic = rs.getString("buyerNic");
-		 String buyerBirthday = rs.getString("buyerBirthday");
+		 Date buyerBirthday = rs.getDate("buyerBirthday");
 		 String buyerEmail = rs.getString("buyerEmail");
 		 String buyerPassword = rs.getString("buyerPassword");
 
@@ -281,8 +282,8 @@ public class Buyer {
 		 + "<input name='buyerID' type='hidden' value='" + buyerID
 		 + "'>" + "</form></td></tr>";
 		 }
-		//Connection Close 
-		con.close();
+		//Connection Close
+		 con.close();
 		 
 		 // Complete the html table
 		 output += "</table>";

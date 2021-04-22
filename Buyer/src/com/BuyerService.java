@@ -1,5 +1,8 @@
 package com;
 import model.Buyer;
+
+import java.sql.Date;
+
 //For REST Service
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -14,7 +17,7 @@ import com.google.gson.*;
 @Path("/Buyers")
 
 public class BuyerService {
-	//Create Buyer Object
+
 	Buyer buyerObj= new Buyer();
 //Read All buyers path	 
 		 @GET
@@ -37,14 +40,14 @@ public class BuyerService {
 		 @FormParam("buyerAddress") String buyerAddress,
 		 @FormParam("buyerPhone") String buyerPhone,
 		 @FormParam("buyerNic") String buyerNic,
-		 @FormParam("buyerBirthday") String buyerBirthday,
+		 @FormParam("buyerBirthday") Date buyerBirthday,
 		 @FormParam("buyerEmail") String buyerEmail,
 		 @FormParam("buyerPassword") String buyerPassword) 
 		
 
 	{
-		String output = buyerObj.insertBuyer( buyerFname,  buyerLname,  buyerGender,  buyerAddress, buyerPhone,  buyerNic, buyerBirthday  ,buyerEmail,  buyerPassword);
-		return output;
+		 String output = buyerObj.insertBuyer( buyerFname,  buyerLname,  buyerGender,  buyerAddress, buyerPhone,  buyerNic, buyerBirthday  ,buyerEmail,  buyerPassword);
+		 return output;
 	}
 
 //Update All Buyers path
@@ -67,8 +70,8 @@ public class BuyerService {
 			 String buyerBirthday=buyerObject.get("buyerBirthday").getAsString();
 			 String buyerPassword = buyerObject.get("buyerPassword").getAsString();//Nic and Pawword cant be edit beacuse there uniqe
 
-			String output = buyerObj.updateBuyer( buyerID, buyerFname,  buyerLname,  buyerGender,  buyerAddress, buyerPhone, buyerBirthday ,  buyerPassword) ;
-			return output;
+			 String output = buyerObj.updateBuyer( buyerID, buyerFname,  buyerLname,  buyerGender,  buyerAddress, buyerPhone, buyerBirthday ,  buyerPassword) ;
+			 return output;
 		}
 	
 //Delete All Buyers Path
@@ -84,7 +87,7 @@ public class BuyerService {
 		//Read the value from the element <itemID>
 		 String buyerID  = doc.select("	buyerID ").text();
 		 String output = buyerObj.deleteBuyer(buyerID);
-		return output;
+		 return output;
 		}
 
 //View Buyer Profile Path
@@ -92,6 +95,6 @@ public class BuyerService {
 		@Path("/viewProfileBuyers")
 		@Produces(MediaType.TEXT_HTML)
 		public String  ViewBuyerDetails(@FormParam("buyerID") int buyerId) {
-			return buyerObj.viewProfileBuyers(buyerId);
+		return buyerObj.viewProfileBuyers(buyerId);
 		}		
 }
