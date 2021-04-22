@@ -95,7 +95,7 @@ public class FundingBodie {
 	 	   	+"<th>Update</th>"
 	 	    	+ "<th>Remove</th>"
 	 	  	+ "</tr>";
-
+	 //sql query
 	 String query = "select * from fundingbodies";
 	 Statement stmt = con.createStatement();
 	 ResultSet rs = stmt.executeQuery(query);
@@ -227,7 +227,7 @@ public class FundingBodie {
 
 		 String query ="select * from fundingbodies WHERE fbID=?";
 		 		
-			PreparedStatement stmt = con.prepareStatement(query);
+		PreparedStatement stmt = con.prepareStatement(query);
 
 		 stmt.setInt(1,fbID);
 		 ResultSet rs = stmt.executeQuery();
@@ -290,7 +290,7 @@ public class FundingBodie {
 			 		+ "<th>Email</th>"
 			 		+"<th>Descripition</th>"
 			 	    	+ "</tr>";
-
+			//sql query
 			 String query = "select * from fundingbodies";
 			 Statement stmt = con.createStatement();
 			 ResultSet rs = stmt.executeQuery(query);
