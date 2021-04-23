@@ -40,7 +40,7 @@ public class PaymentService {
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 		@Produces(MediaType.TEXT_PLAIN)
 		
-		public String insertProduct( @FormParam("paymentType") String paymentType,
+		public String insertPayment( @FormParam("paymentType") String paymentType,
 		 @FormParam("paymentAmount") String paymentAmount,
 		 @FormParam("paymentPostaladdress") String paymentPostaladdress,
 		 @FormParam("paymentPostalcode") String paymentPostalcode,
