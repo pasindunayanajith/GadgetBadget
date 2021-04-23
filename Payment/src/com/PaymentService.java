@@ -73,7 +73,7 @@ public class PaymentService {
 		}
 		
 
-//Delete Payment PATH
+//Delete Payment Path
 		@DELETE
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_XML)
